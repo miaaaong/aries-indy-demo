@@ -1,0 +1,27 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<div class="content">
+    <div class="container">
+        <form novalidate autocomplete="false" method="GET" action="/definitions/list">
+            <div class="form-group">
+                <select id="definitionId" name="definition_id"
+                    class="custom-select"
+                    value="{{ definitionId }}">
+                    <option selected disabled value="">Select a Definition Id</option>
+                    {{#each definitionIds}}
+                    <option {{#eq this ../selectedId}}selected{{/eq}}
+                        value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block mb-3">
+                Get Definition
+            </button>
+        </form>
+        <div class="form-group">
+            <label>Definition :</label>
+            <textarea id="definitionObject" name="definition_object" class="form-control" cols="30" rows="10"
+                readonly>{{ definitionDetail }}</textarea>
+        </div>
+    </div>
+</div>

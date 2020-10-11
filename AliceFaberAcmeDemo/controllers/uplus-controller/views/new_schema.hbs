@@ -1,0 +1,23 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<div class="content">
+    <div class="container">
+        <form novalidate autocomplete="off" method="POST" , action="/schemas/new">
+            <div class="form-group">
+                <label for="schemaObject">Enter New Schema :</label>
+                <textarea class="form-control {{#if errors}}is-invalid{{/if}}" id="schemaObject"
+                    name="schema_object" cols="30" rows="10">{{schema}}</textarea>
+                {{#if errors}}
+                <div class="invalid-feedback d-block">
+                    {{#each errors}}
+                    <div>{{ this.msg }}</div>
+                    {{/each}}
+                </div>
+                {{/if}}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                Create Schema
+            </button>
+        </form>
+    </div>
+</div>

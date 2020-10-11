@@ -1,0 +1,26 @@
+[
+    {
+        "label": "Wallet",
+        "url": "/dids"
+    },
+    {
+        "label": "Connections",
+        "url": "/connections"
+    },
+    {
+        "label": "Proof Requests",
+        "url": "/proofs"
+    },
+    {
+        "label": "Credential Schemas",
+        "url": "/schemas"
+    },
+    {
+        "label": "Credential Definitions",
+        "url": "/definitions"
+    },
+    {
+        "label": "Credentials",
+        "url": "/credentials"
+    }
+]

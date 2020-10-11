@@ -1,0 +1,24 @@
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="card-title">
+            <h5>
+                <span>{{ did.did }}</span>
+            </h5>
+            <small>
+                <span>public : {{did.public}}</span>
+            </small>
+        </div>
+        <div class="card-text">
+            <small class="text-muted">{{ did.verkey }}</small>
+            {{#eq did.did ../curr}}
+            <div>
+                <span>
+                    <i class="fas fa-check"></i>
+                </span>
+                &nbsp;
+                <span>Current Public DID</span>
+            </div>
+            {{/eq}}
+        </div>
+    </div>
+</div>

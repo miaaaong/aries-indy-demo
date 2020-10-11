@@ -1,0 +1,15 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<div class="content">
+    {{#if dids}}
+    <div class="card-columns">
+        {{#each dids}}
+        {{!-- {{#eq this.did }} --}}
+        {{> did_card did=this curr=currDID.did}}
+        {{!-- {{/eq}} --}}
+        {{/each}}
+    </div>
+    {{else}}
+    {{> empty_list }}
+    {{/if}}
+</div>

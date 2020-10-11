@@ -1,0 +1,36 @@
+{{> component_nav moreNavLinks=navLinks}}
+
+<div class="content">
+    <div class="container">
+        <form novalidate autocomplete="false" method="GET" action="/schemas/list">
+            <div class="form-group">
+                <select id="schemaId" name="schema_id"
+                    class="custom-select"
+                    value="{{ schemaId }}">
+                    <option selected disabled value="">Select a Schema Id</option>
+                    {{#each schemaIds}}
+                    <option {{#eq this ../selectedId}}selected{{/eq}}
+                        value="{{this}}">{{this}}</option>
+                    {{/each}}
+                </select>
+                {{!-- {{#filter error_keys "connection_id"}}
+                <div class="invalid-feedback d-block">
+                    {{#each ../errors}}
+                    {{#eq this.param "connection_id"}}
+                    <div>{{ this.msg }}</div>
+                    {{/eq}}
+                    {{/each}}
+                </div>
+                {{/filter}} --}}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block mb-3">
+                Get Schema
+            </button>
+        </form>
+        <div class="form-group">
+            <label>Schema :</label>
+            <textarea id="schemaObject" name="schema_object" class="form-control" cols="30" rows="10"
+                readonly>{{ schemaDetail }}</textarea>
+        </div>
+    </div>
+</div>

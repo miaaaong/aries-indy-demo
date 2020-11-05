@@ -30,9 +30,9 @@ const proofJSON = {
               "cred_def_id": "<Enter a valid Credential Definition ID>"
             }
           ]
-        },
-        "0_self_attested_thing_uuid": {
-          "name": "self_attested_thing"
+        // },
+        // "0_self_attested_thing_uuid": {
+        //   "name": "self_attested_thing"
         }
       },
       "requested_predicates": {
@@ -62,7 +62,7 @@ router.get('/', async function(req, res, next) {
     const proofs = await agentService.getProofRequests();
     // console.log(proofs[0].presentation)
     // console.log(JSON.stringify(proofs[0].presentation))
-    console.log(JSON.stringify(proofs[0].presentation.requested_proof.revealed_attrs))
+    // console.log(JSON.stringify(proofs[0].presentation.requested_proof.revealed_attrs))
 
     navLinkService.setCustomNavLinkActive('/proofs');
     res.render('proof', {

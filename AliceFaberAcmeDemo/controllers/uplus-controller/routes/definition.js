@@ -9,6 +9,11 @@ navLinkService.registerCustomLinks([
     { "label": "New", "url": "/definitions/new" }
 ]);
 
+const definitionJSON = {
+    "schema_id": "TdA1wvLAkAPj5HRJkNhact:2:member schema:1.0.0",
+    "tag": "default"
+};
+
 router.use(function (req, res, next) {
     navLinkService.clearLinkClasses();
     navLinkService.setNavLinkActive('/definitions');
@@ -55,7 +60,7 @@ async function handleNewDefinitionGet(req, res, next) {
         navLinks: navLinkService.getNavLinks(),
         customNavLinks: navLinkService.getCustomNavLinks(),
         errors: req.errors || null,
-        definition: req.errors && req.definition || null
+        definition: (req.errors && req.definition) || JSON.stringify(definitionJSON, null, 4)
     });
 }
 

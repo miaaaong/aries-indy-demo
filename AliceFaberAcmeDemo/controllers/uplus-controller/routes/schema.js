@@ -11,7 +11,7 @@ navLinkService.registerCustomLinks([
 
 const schemaJSON = {
     "schema_name": "member schema",
-    "schema_version": "37.35.55",
+    "schema_version": "1.0.0",
     "attributes": [
         "name",
         "phone",
@@ -38,11 +38,14 @@ router.get('/list', async function (req, res, next) {
     let schemaDetail = "";
     if(req.query && req.query.schema_id) {
         selectedId = req.query.schema_id;
-        let url = selectedId.replace(/\:/gi, "%3A").replace(/\s/, "%20");
+        // let url = selectedId.replace(/\:/gi, "%3A").replace(/\s/, "%20");
+        let url = selectedId.replace(/\s/, "%20");
         // console.log(url);
         // url = url.replace(/\s/, "%20");
         console.log(url);
-        schemaDetail = JSON.stringify(await agentService.getSchema(url), null, 4);
+        let schemaValue = await agentService.getSchema(url);
+        console.log(schemaValue)
+        schemaDetail = JSON.stringify(schemaValue, null, 4);
     }
     
     navLinkService.setCustomNavLinkActive('/schemas/list');

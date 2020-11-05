@@ -6,7 +6,7 @@
             <div class="form-group">
                 <label for="definitionObject">Enter New Definition :</label>
                 <textarea class="form-control {{#if errors}}is-invalid{{/if}}" id="definitionObject"
-                    name="definition_object" cols="30" rows="10">{{definition.definition_object}}</textarea>
+                    name="definition_object" cols="30" rows="10">{{definition}}</textarea>
                 {{#if errors}}
                 <div class="invalid-feedback d-block">
                     {{#each errors}}

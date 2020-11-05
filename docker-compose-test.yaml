@@ -1,0 +1,148 @@
+version: '3'
+
+networks:
+    agentsdevnet:
+services:
+    uplus-agent:
+        container_name: uplus-agent
+        image: bcgovimages/aries-cloudagent:py36-1.14-0_0.4.2
+        ports:
+          - 8020-8027:8020-8027
+        networks:
+          - agentsdevnet
+        tty: true
+        command:
+          - start
+          - --log-level
+          - 'info'
+          - --endpoint
+          - http://192.168.65.3:8020
+          - --label 
+          - uplus-agent 
+          - --auto-ping-connection
+          - --auto-respond-messages
+          - --inbound-transport
+          - http
+          - 0.0.0.0
+          - '8020'
+          - --outbound-transport
+          - http
+          - --admin
+          - 0.0.0.0
+          - '8021'
+          - --admin-insecure-mode
+          - --wallet-type
+          - indy
+          - --wallet-name
+          - uplus-agent
+          - --wallet-key
+          - uplus-agent
+          - --genesis-url
+          - http://192.168.65.3:9000/genesis
+          - --seed
+          - my_seed_0000000000000000000uplus
+          - --webhook-url
+          - http://192.168.65.3:8022/webhooks
+          - --auto-accept-invites
+          - --auto-accept-requests
+          - --auto-store-credential
+          - --auto-respond-credential-offer
+          # - --preserve-exchange-records
+          # - --wallet-storage-type
+          # - postgres_storage
+          # - --wallet-storage-config
+          # - ${WALLET_STORAGE_CONFIG}
+          # - --wallet-storage-creds
+          # - ${WALLET_STORAGE_CREDS}
+
+    alice-agent:
+      container_name: alice-agent
+      image: bcgovimages/aries-cloudagent:py36-1.14-0_0.4.2
+      ports:
+        - 8030-8037:8030-8037
+      networks:
+        - agentsdevnet
+      tty: true
+      command:
+        - start
+        - --log-level
+        - 'info'
+        - --endpoint
+        - http://192.168.65.3:8030
+        - --label 
+        - alice-agent 
+        - --auto-ping-connection
+        - --auto-respond-messages
+        - --inbound-transport
+        - http
+        - 0.0.0.0
+        - '8030'
+        - --outbound-transport
+        - http
+        - --admin
+        - 0.0.0.0
+        - '8031'
+        - --admin-insecure-mode
+        - --wallet-type
+        - indy
+        - --wallet-name
+        - alice-agent
+        - --wallet-key
+        - alice-agent
+        - --genesis-url
+        - http://192.168.65.3:9000/genesis
+        - --seed
+        - my_seed_0000000000000000000alice
+        - --webhook-url
+        - http://192.168.65.3:8032/webhooks
+        - --auto-accept-invites
+        - --auto-accept-requests
+        - --auto-store-credential
+        - --auto-respond-credential-offer
+        - --auto-respond-presentation-request
+
+    pub-agent:
+      container_name: pub-agent
+      image: bcgovimages/aries-cloudagent:py36-1.14-0_0.4.2
+      ports:
+        - 8040-8047:8040-8047
+      networks:
+        - agentsdevnet
+      tty: true
+      command:
+        - start
+        - --log-level
+        - 'info'
+        - --endpoint
+        - http://192.168.65.3:8040
+        - --label 
+        - pub-agent 
+        - --auto-ping-connection
+        - --auto-respond-messages
+        - --inbound-transport
+        - http
+        - 0.0.0.0
+        - '8040'
+        - --outbound-transport
+        - http
+        - --admin
+        - 0.0.0.0
+        - '8041'
+        - --admin-insecure-mode
+        - --wallet-type
+        - indy
+        - --wallet-name
+        - pub-agent
+        - --wallet-key
+        - pub-agent
+        - --genesis-url
+        - http://192.168.65.3:9000/genesis
+        - --seed
+        - my_seed_000000000000000000000pub
+        - --webhook-url
+        - http://192.168.65.3:8042/webhooks
+        - --auto-accept-invites
+        - --auto-accept-requests
+        - --auto-store-credential
+        - --auto-respond-credential-offer
+        - --auto-verify-presentation
